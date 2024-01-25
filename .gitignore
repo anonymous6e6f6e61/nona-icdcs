@@ -1,0 +1,12 @@
+target
+.idea
+*.log
+*.csv
+*.out
+*.txt
+*.DS_Store
+*__pycache__/
+results/*
+dependency-reduced-pom.xml
+flink-1.10.0/
+kafka_2.13-3.2.1/

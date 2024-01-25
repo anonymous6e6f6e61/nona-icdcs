@@ -1,0 +1,20 @@
+device: "server"
+input_file: "ROOT/input/only_annotations"
+source_class: "streamingRetention.usecases.carLocal.CarLocalKafkaProducer"
+source_remote: "true"
+exp_name: "CL_static"
+marker_filepath: "ROOT/scripts/.marker"
+
+variants:
+  - name: "nona"
+    procedure_script: "proc--cl-add-only-2q-CYC-PED-nona.sh"
+    spe_class: "streamingRetention.Nona"
+    spe_args: "--queryID NONA --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+                --serializerActivator CAR_LOCAL_FULL --timestampConverter identity"
+
+  - name: "anankek"
+    procedure_script: "proc--cl-add-only-2q-CYC-PED-ananke_k.sh"
+    spe_class: "streamingRetention.AnankeK"
+    spe_args: "--queryID ANKK --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+              --serializerActivator CAR_LOCAL_FULL --timestampConverter identity
+              --preregisterQuery CYCLISTS=6000 --preregisterQuery PEDESTRIANS=2000"

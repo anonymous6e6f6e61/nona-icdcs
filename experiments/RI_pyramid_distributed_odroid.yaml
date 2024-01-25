@@ -1,0 +1,22 @@
+device: "odroid"
+input_file: "ROOT/input/mzip/MHEALTHDATASET"
+source_class: "streamingRetention.usecases.riot.MhealthKafkaProducer"
+source_extra_args: "40000000"
+source_remote: "true"
+exp_name: "RI_pyramid_distributed"
+marker_filepath: "ROOT/scripts/.marker"
+
+variants:
+  - name: "nona_d"
+    procedure_script: "proc--ri-pyramid-nona-distributed.sh"
+    spe_class: "streamingRetention.Nona"
+    spe_args: "--queryID NONA --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+               --serializerActivator RIOT_MHEALTH_FULL --timestampConverter identity"
+
+query_workers:
+  - ssh_prefix: "first"
+    root: "/first/"
+  - ssh_prefix: "second"
+    root: "/second/"
+  - ssh_prefix: "third"
+    root: "/third/"

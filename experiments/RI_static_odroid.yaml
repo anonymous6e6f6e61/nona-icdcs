@@ -1,0 +1,21 @@
+device: "odroid"
+input_file: "ROOT/input/mzip/MHEALTHDATASET"
+source_class: "streamingRetention.usecases.riot.MhealthKafkaProducer"
+source_extra_args: "10000000"
+source_remote: "true"
+exp_name: "RI_static"
+marker_filepath: "ROOT/scripts/.marker"
+
+variants:
+  - name: "nona"
+    procedure_script: "proc--ri-add-only-1q-STA-nona.sh"
+    spe_class: "streamingRetention.Nona"
+    spe_args: "--queryID NONA --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+               --serializerActivator RIOT_MHEALTH_FULL --timestampConverter identity"
+
+  - name: "anankek"
+    procedure_script: "proc--ri-add-only-1q-STA-ananke_k.sh"
+    spe_class: "streamingRetention.AnankeK"
+    spe_args: "--queryID ANKK --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+            --serializerActivator LINEAR_ROAD_FULL --timestampConverter identity
+            --preregisterQuery STATS=15000"

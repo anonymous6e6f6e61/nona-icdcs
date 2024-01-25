@@ -1,0 +1,14 @@
+device: "odroid"
+input_file: "ROOT/input/ioal17insfry4naurtybkp44dxev59ta.txt"
+source_class: "streamingRetention.usecases.linearRoad.LinearRoadKafkaProducer"
+source_extra_args: "50000000"
+source_remote: "true"
+exp_name: "LR_pyramid"
+marker_filepath: "ROOT/scripts/.marker"
+
+variants:
+  - name: "nona"
+    procedure_script: "proc--lr-pyramid-short-nona.sh"
+    spe_class: "streamingRetention.Nona"
+    spe_args: "--queryID NONA --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+               --serializerActivator LINEAR_ROAD_FULL --timestampConverter secToMillis"

@@ -1,0 +1,26 @@
+device: "server"
+input_file: ""
+source_class: ""
+source_extra_args: ""
+source_remote: ""
+exp_name: "synthetic_descending"
+marker_filepath: "ROOT/scripts/.marker"
+
+variants:
+  - name: "synthetic750"
+    procedure_script: "proc--synth-pyramid-nona-750.sh"
+    spe_class: "streamingRetention.Nona"
+    spe_args: "--queryID NONA --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+               --serializerActivator SYNTHETIC --timestampConverter secToMillis"
+
+  - name: "synthetic150"
+    procedure_script: "proc--synth-pyramid-nona-150.sh"
+    spe_class: "streamingRetention.Nona"
+    spe_args: "--queryID NONA --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+             --serializerActivator SYNTHETIC --timestampConverter secToMillis"
+
+  - name: "synthetic15"
+    procedure_script: "proc--synth-pyramid-nona-15.sh"
+    spe_class: "streamingRetention.Nona"
+    spe_args: "--queryID NONA --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+             --serializerActivator SYNTHETIC --timestampConverter secToMillis"

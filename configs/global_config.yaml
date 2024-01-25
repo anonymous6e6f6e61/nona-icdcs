@@ -1,0 +1,17 @@
+kafka_bin: "ROOT/kafka_2.13-3.2.1/bin"
+flink_bin: "ROOT/flink-1.10.0/bin"
+zookeeper_conf: "ROOT/scripts/zookeeper.properties"
+kafka_server_conf: "ROOT/scripts/server.properties"
+kafka_server_port: "localhost:9092"
+
+# set these values to the ip:port of the remote machine R providing the data source,
+# the root directory of this repository on R,
+# and the ssh-command used to login from this machine at R (must be passwordless)
+kafka_server_port_remote: "012.34.56.789:9092"
+remote_root: "/remote/project/root"
+ssh_prefix: "ssh user@012.34.56.789"
+
+source_topic: "SOURCE"
+provenance_topic: "PROVENANCE"
+requests_topic: "REQUESTS"
+replies_topic: "REPLIES"

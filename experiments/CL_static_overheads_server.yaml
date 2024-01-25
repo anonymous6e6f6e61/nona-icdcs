@@ -1,0 +1,31 @@
+device: "server"
+input_file: "ROOT/input/only_annotations"
+source_class: "streamingRetention.usecases.carLocal.CarLocalKafkaProducer"
+source_remote: "true"
+exp_name: "CL_static_overheads"
+marker_filepath: "ROOT/scripts/.marker"
+
+variants:
+  - name: "anankek-1q"
+    procedure_script: "proc--cl-add-only-1q-CYC-ananke_k.sh"
+    spe_class: "streamingRetention.AnankeK"
+    spe_args: "--queryID ANKK --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+            --serializerActivator CAR_LOCAL_FULL --timestampConverter identity
+            --preregisterQuery CYCLISTS=6000"
+
+  - name: "ananke1-1q"
+    procedure_script: ""
+    spe_class: "streamingRetention.usecases.carLocal.queries.CarLocalCyclists"
+    spe_args: "--queryU 6000 --queryID ANANKE --provenanceActivator ANANKE --graphEncoder NoOpProvenanceGraphEncoder"
+
+  - name: "anankek-2q"
+    procedure_script: "proc--cl-add-only-2q-CYC-ananke_k.sh"
+    spe_class: "streamingRetention.AnankeK"
+    spe_args: "--queryID ANKK --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+            --serializerActivator CAR_LOCAL_FULL --timestampConverter identity
+            --preregisterQuery CYCLISTS1=6000 --preregisterQuery CYCLISTS2=6000"
+
+  - name: "ananke1-2q"
+    procedure_script: ""
+    spe_class: "streamingRetention.usecases.carLocal.queries.CarLocal2Cyclists"
+    spe_args: "--queryU 6000 --queryID ANANKE --provenanceActivator ANANKE --graphEncoder NoOpProvenanceGraphEncoder"

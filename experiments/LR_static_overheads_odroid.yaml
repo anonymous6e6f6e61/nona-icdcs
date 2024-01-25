@@ -1,0 +1,32 @@
+device: "odroid"
+input_file: "ROOT/input/ioal17insfry4naurtybkp44dxev59ta.txt"
+source_class: "streamingRetention.usecases.linearRoad.LinearRoadKafkaProducer"
+source_extra_args: "25000000"
+source_remote: "true"
+exp_name: "LR_static_overheads"
+marker_filepath: "ROOT/scripts/.marker"
+
+variants:
+  - name: "anankek-1q"
+    procedure_script: "proc--lr-add-only-1q-ACC-ananke_k.sh"
+    spe_class: "streamingRetention.AnankeK"
+    spe_args: "--queryID ANKK --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+            --serializerActivator LINEAR_ROAD_FULL --timestampConverter secToMillis
+            --preregisterQuery ACCIDENTS=150000"
+
+  - name: "ananke1-1q"
+    procedure_script: ""
+    spe_class: "streamingRetention.usecases.linearRoad.queries.LinearRoadAccident"
+    spe_args: "--queryU 150000 --queryID ANANKE --provenanceActivator ANANKE --graphEncoder NoOpProvenanceGraphEncoder"
+
+  - name: "anankek-2q"
+    procedure_script: "proc--lr-add-only-2q-ACC-ananke_k.sh"
+    spe_class: "streamingRetention.AnankeK"
+    spe_args: "--queryID ANKK --slackStrategy ZERO --queryU -1 --graphEncoder NoOpProvenanceGraphEncoder
+            --serializerActivator LINEAR_ROAD_FULL --timestampConverter secToMillis
+            --preregisterQuery ACCIDENTS1=150000 --preregisterQuery ACCIDENTS2=150000"
+
+  - name: "ananke1-2q"
+    procedure_script: ""
+    spe_class: "streamingRetention.usecases.linearRoad.queries.LinearRoad2Accidents"
+    spe_args: "--queryU 150000 --queryID ANANKE --provenanceActivator ANANKE --graphEncoder NoOpProvenanceGraphEncoder"
